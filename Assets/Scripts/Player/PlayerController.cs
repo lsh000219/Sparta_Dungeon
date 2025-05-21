@@ -19,8 +19,12 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 mouseDelta;
 
+
+
     [HideInInspector]
     public bool canLook = true;
+
+    public Action inventory;
 
     private Rigidbody rigidbody;
 
@@ -113,6 +117,22 @@ public class PlayerController : MonoBehaviour
 
     public void ToggleCursor(bool toggle)
     {
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
+    }
+
+    public void OnInventoryButton(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.phase == InputActionPhase.Started)
+        {
+            inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
     }
