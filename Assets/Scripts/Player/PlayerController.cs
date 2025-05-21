@@ -1,9 +1,15 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    Coroutine coroutine;
+
+    [SerializeField]
+    public Canvas pepperEffect;
+
     [Header("Movement")]
     public float moveSpeed;
     private Vector2 curMovementInput;
@@ -21,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public bool canLook = true;
+
+    public Action inventory;
 
     private Rigidbody rigidbody;
 
@@ -72,6 +80,40 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void ForcedJump(float jumpPower)
+    {
+        rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+    }
+
+    public void PepperEffect()
+    {
+        if (coroutine != null) StopCoroutine(coroutine);
+        coroutine = StartCoroutine(CoTimer(2.0f));
+    }
+
+    IEnumerator CoTimer(float battleTime)
+    {
+        float curTime = battleTime; int i = 5;
+        pepperEffect.gameObject.SetActive(true);
+
+        while (curTime > 0)
+        {
+            curTime -= Time.deltaTime;
+
+            if (curTime <= 0)
+            {
+                rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse); i--;
+                if (i <= 0) { 
+                    pepperEffect.gameObject.SetActive(false);
+                    coroutine = null;  yield break;
+                }
+                curTime = 3.0f;
+            }
+            yield return null;
+        }
+        coroutine = null;
+    }
+
     private void Move()
     {
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
@@ -113,6 +155,22 @@ public class PlayerController : MonoBehaviour
 
     public void ToggleCursor(bool toggle)
     {
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        canLook = !toggle;
+    }
+
+    public void OnInventoryButton(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.phase == InputActionPhase.Started)
+        {
+            inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
     }
