@@ -82,6 +82,11 @@ public class PlayerController : MonoBehaviour
 
     public void ForcedJump(float jumpPower)
     {
+        rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+    }
+
+    public void PepperEffect()
+    {
         if (coroutine != null) StopCoroutine(coroutine);
         coroutine = StartCoroutine(CoTimer(2.0f));
     }

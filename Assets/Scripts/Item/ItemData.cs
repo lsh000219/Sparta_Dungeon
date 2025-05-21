@@ -9,7 +9,6 @@ public enum ConsumableType
 {
     Health,
     JumpForce,
-    Speed
 }
 
 [System.Serializable]

@@ -199,9 +199,7 @@ public class UIInventory : MonoBehaviour
                     case ConsumableType.Health:
                         condition.Heal(selectedItem.item.consumables[i].value); break;
                     case ConsumableType.JumpForce:
-                        controller.ForcedJump(selectedItem.item.consumables[i].value); break;
-                    case ConsumableType.Speed:
-                        controller.ForcedJump(selectedItem.item.consumables[i].value); break;
+                        controller.PepperEffect(); break;
                 }
             }
             RemoveSelctedItem();
