@@ -6,14 +6,16 @@ public class PlayerCondition : MonoBehaviour
     public UICondition uiCondition;
 
     Condition health { get { return uiCondition.health; } }
-
-
-    public float noHungerHealthDecay;
+    Condition stamina { get { return uiCondition.stamina; } }
+    
+    public float healthDecay;
+    public float staminaRecover;
     public event Action onTakeDamage;
 
     private void Update()
     {
-        health.Subtract(noHungerHealthDecay * Time.deltaTime);
+        health.Subtract(healthDecay * Time.deltaTime);
+        stamina.Add(staminaRecover * Time.deltaTime);
 
         if (health.curValue < 0f)
         {
@@ -25,6 +27,8 @@ public class PlayerCondition : MonoBehaviour
     {
         health.Add(amount);
     }
+    
+    public void jump(float amount){stamina.Subtract(amount);}
 
     public void Die()
     {

@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class JumpPlatform : MonoBehaviour
+public class SpringPlatform : MonoBehaviour
 {
     private PlayerController controller;
 
+    [SerializeField]
+    public float jumpPower;
+    
     private void Start()
     {
         controller = CharacterManager.Instance.Player.controller;
@@ -13,6 +14,6 @@ public class JumpPlatform : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        controller.ForcedJump(500.0f);
+        controller.SpringJump(jumpPower);
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Condition : MonoBehaviour
@@ -8,6 +9,7 @@ public class Condition : MonoBehaviour
     public float startValue;
     public float passiveValue;
     public Image uiBar;
+    public TextMeshProUGUI uiText;
 
     private void Start()
     {
@@ -17,6 +19,7 @@ public class Condition : MonoBehaviour
     private void Update()
     {
         uiBar.fillAmount = GetPercentage();
+        uiText.text = ((int)(curValue)).ToString();
     }
 
     public void Add(float amount)

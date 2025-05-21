@@ -3,7 +3,7 @@
 public class UICondition : MonoBehaviour
 {
     public Condition health;
-
+    public Condition stamina;
 
     private void Start()
     {

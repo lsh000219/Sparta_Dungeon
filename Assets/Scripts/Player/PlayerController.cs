@@ -28,10 +28,11 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool canLook = true;
 
-    public Action inventory;
+    public Action Inventory;
 
     private Rigidbody rigidbody;
 
+    private bool pov = true;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -60,6 +61,24 @@ public class PlayerController : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
     }
 
+    public void ChangeView(InputAction.CallbackContext context)
+    {
+        if (pov)
+        {
+            //cameraContainer.localPosition.y = 3;
+            //cameraContainer.localPosition.z = -5;
+            //cameraContainer.localRotate.x = 10;
+            pov = false;
+        }
+        else
+        {
+            //cameraContainer.localPosition.y = 1;
+            //cameraContainer.localPosition.z = 0;
+            //cameraContainer.localRotate.x = 0;
+            pov = true;
+        }
+    }
+    
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -77,21 +96,29 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
             rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            CharacterManager.Instance.Player.condition.jump(20.0f);
         }
     }
 
-    public void ForcedJump(float jumpPower)
+    public void ForcedJump(float jumpForce)
     {
-        rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+        Vector3 upward = transform.up * (jumpForce * 0.7f);
+        Vector3 forward = transform.forward * (jumpForce * 3f);
+        rigidbody.AddForce((upward + forward) * jumpForce, ForceMode.Impulse);
+    }
+    
+    public void SpringJump(float jumpForce)
+    {
+        rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
     }
 
     public void PepperEffect()
     {
         if (coroutine != null) StopCoroutine(coroutine);
-        coroutine = StartCoroutine(CoTimer(2.0f));
+        coroutine = StartCoroutine(PepperTimer(2.0f));
     }
 
-    IEnumerator CoTimer(float battleTime)
+    IEnumerator PepperTimer(float battleTime)
     {
         float curTime = battleTime; int i = 5;
         pepperEffect.gameObject.SetActive(true);
@@ -117,19 +144,28 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= moveSpeed;
-        dir.y = rigidbody.velocity.y;
+        Vector3 horizontalVelocity = dir * moveSpeed;
 
-        rigidbody.velocity = dir;
+        // 기존 수직 속도 유지 (점프나 낙하 반영)
+        float verticalVelocity = rigidbody.velocity.y;
+
+        // 수평 이동 + 기존 y속도 결합
+        Vector3 newVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
+
+        rigidbody.velocity = newVelocity;
     }
 
     void CameraLook()
     {
-        camCurXRot += mouseDelta.y * lookSensitivity;
-        camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
-        cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
+        if (pov)
+        {
+            camCurXRot += mouseDelta.y * lookSensitivity;
+            camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
+            cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
 
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+            transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+        }
+
     }
 
     bool IsGrounded()
@@ -163,7 +199,7 @@ public class PlayerController : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            inventory?.Invoke();
+            Inventory?.Invoke();
             ToggleCursor();
         }
     }
