@@ -26,47 +26,51 @@ public class Interaction : MonoBehaviour
         if (Time.time - lastCheckTime > checkRate)
         {
             lastCheckTime = Time.time;
-
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-            RaycastHit hit;
+            
+            float viewRange;
+            
             if (!CharacterManager.Instance.Player.controller.giant)
             {
-                if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
-                {
-                    if (hit.collider.gameObject != curInteractGameObject)
-                    {
-                        curInteractGameObject = hit.collider.gameObject;
-                        curInteractable = hit.collider.GetComponent<IInteractable>();
-                        SetPromptText();
-                    }
-                }
-                else
-                {
-                    curInteractGameObject = null;
-                    curInteractable = null;
-                    promptText.gameObject.SetActive(false);
-                }
+                viewRange = 1.0f;
             }
             else
             {
-                if (Physics.Raycast(ray, out hit, maxCheckDistance + 2, layerMask))
+                viewRange = 3.0f;
+            }
+            
+            Ray ray; RaycastHit hit;
+            if (CharacterManager.Instance.Player.controller.pov)
+            {
+                ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            }
+            else
+            {
+                ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                viewRange += 3.0f;
+                if (CharacterManager.Instance.Player.controller.giant)
                 {
-                    if (hit.collider.gameObject != curInteractGameObject)
-                    {
-                        curInteractGameObject = hit.collider.gameObject;
-                        curInteractable = hit.collider.GetComponent<IInteractable>();
-                        SetPromptText();
-                    }
-                }
-                else
-                {
-                    curInteractGameObject = null;
-                    curInteractable = null;
-                    promptText.gameObject.SetActive(false);
+                    viewRange += 10.0f;
                 }
             }
 
             
+            
+            
+            if (Physics.Raycast(ray, out hit, maxCheckDistance + viewRange, layerMask))
+            {
+                if (hit.collider.gameObject != curInteractGameObject)
+                {
+                    curInteractGameObject = hit.collider.gameObject;
+                    curInteractable = hit.collider.GetComponent<IInteractable>();
+                    SetPromptText();
+                }
+            }
+            else
+            {
+                curInteractGameObject = null;
+                curInteractable = null;
+                promptText.gameObject.SetActive(false);
+            }
         }
     }
 

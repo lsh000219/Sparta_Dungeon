@@ -14,8 +14,8 @@ public class ForcedJumpPlatform : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Vector3 upward = CharacterManager.Instance.Player.controller.transform.up * (jumpPower * 0.4f);
-        Vector3 forward = CharacterManager.Instance.Player.controller.transform.forward * (jumpPower * 10f);
+        Vector3 upward = CharacterManager.Instance.Player.controller.transform.up * (jumpPower * 0.5f);
+        Vector3 forward = CharacterManager.Instance.Player.controller.transform.forward * (jumpPower * 5f);
         CharacterManager.Instance.Player.controller.ForcedJump((upward + forward) * jumpPower);
     }
 }

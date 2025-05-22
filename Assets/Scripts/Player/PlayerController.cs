@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rigidbody;
 
-    private bool pov = true;
+    public bool pov = true;
     public bool giant = false;
     private void Awake()
     {
@@ -108,6 +108,11 @@ public class PlayerController : MonoBehaviour
     public void Jump()
     {
         rigidbody.AddForce(Vector2.up * this.jumpPower, ForceMode.Impulse);
+    }
+    
+    public void FixedJump(float value)
+    {
+        rigidbody.AddForce(Vector2.up * value, ForceMode.Impulse);
     }
 
     private void Move()
