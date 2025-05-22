@@ -65,16 +65,16 @@ public class PlayerController : MonoBehaviour
     {
         if (pov)
         {
-            //cameraContainer.localPosition.y = 3;
-            //cameraContainer.localPosition.z = -5;
-            //cameraContainer.localRotate.x = 10;
+            cameraContainer.localPosition = new Vector3(cameraContainer.localPosition.x, 3f, -5f);
+            cameraContainer.localEulerAngles = new Vector3(20f, 10f, 0f);
+            
             pov = false;
         }
         else
         {
-            //cameraContainer.localPosition.y = 1;
-            //cameraContainer.localPosition.z = 0;
-            //cameraContainer.localRotate.x = 0;
+            cameraContainer.localPosition = new Vector3(cameraContainer.localPosition.x, 1f, 0);
+            cameraContainer.localEulerAngles = new Vector3(0f, 1f, 0f);
+            
             pov = true;
         }
     }
@@ -102,8 +102,8 @@ public class PlayerController : MonoBehaviour
 
     public void ForcedJump(float jumpForce)
     {
-        Vector3 upward = transform.up * (jumpForce * 0.7f);
-        Vector3 forward = transform.forward * (jumpForce * 3f);
+        Vector3 upward = transform.up * (jumpForce * 0.4f);
+        Vector3 forward = transform.forward * (jumpForce * 10f);
         rigidbody.AddForce((upward + forward) * jumpForce, ForceMode.Impulse);
     }
     
@@ -144,15 +144,19 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        Vector3 horizontalVelocity = dir * moveSpeed;
+        Vector3 targetVelocity = dir * moveSpeed;
 
-        // 기존 수직 속도 유지 (점프나 낙하 반영)
-        float verticalVelocity = rigidbody.velocity.y;
 
-        // 수평 이동 + 기존 y속도 결합
-        Vector3 newVelocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
+        Vector3 velocity = Vector3.Lerp(
+            new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z), 
+            targetVelocity,
+            0.1f 
+        );
 
-        rigidbody.velocity = newVelocity;
+
+        velocity.y = rigidbody.velocity.y;
+
+        rigidbody.velocity = velocity;
     }
 
     void CameraLook()
@@ -165,12 +169,19 @@ public class PlayerController : MonoBehaviour
 
             transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
         }
+        else
+        {
+            camCurXRot += mouseDelta.y * lookSensitivity;
+            camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
+            cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 10f, 0);
 
+            transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+        }
     }
 
     bool IsGrounded()
     {
-        Ray[] rays = new Ray[4]
+        Ray[] rays = new Ray[]
         {
             new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
             new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
