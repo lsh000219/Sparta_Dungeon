@@ -28,11 +28,13 @@ public class PlayerController : MonoBehaviour
     public bool canLook = true;
 
     public Action Inventory;
-
     private Rigidbody rigidbody;
 
     public bool pov = true;
     public bool giant = false;
+    
+    Item_Equipable equipable;
+    
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -107,7 +109,17 @@ public class PlayerController : MonoBehaviour
     
     public void Jump()
     {
-        rigidbody.AddForce(Vector2.up * this.jumpPower, ForceMode.Impulse);
+        Vector2 v;
+        if (equipable != null)
+        {
+            v = Vector2.up * (this.jumpPower + equipable.jumpValue());
+        }
+        else
+        {
+            v = Vector2.up * this.jumpPower;
+        }
+        
+        rigidbody.AddForce(v, ForceMode.Impulse);
     }
     
     public void FixedJump(float value)
@@ -118,7 +130,16 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        Vector3 targetVelocity = dir * moveSpeed;
+        
+        Vector3 targetVelocity;
+        if (equipable != null)
+        {
+            targetVelocity = dir * (moveSpeed + equipable.speenValue());
+        }
+        else
+        {
+            targetVelocity = dir * moveSpeed;
+        }
 
 
         Vector3 velocity = Vector3.Lerp(
@@ -199,5 +220,15 @@ public class PlayerController : MonoBehaviour
     {
         giant = toggle;
         rigidbody.transform.localScale = new Vector3(scale, scale, scale);
+    }
+
+    public void EquipItem(Item_Equipable item)
+    {
+        equipable = item;
+    }
+    
+    public void UnEquipItem()
+    {
+        equipable = null;
     }
 }

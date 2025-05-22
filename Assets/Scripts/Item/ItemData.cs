@@ -3,6 +3,7 @@ public enum ItemType
 {
     Consumable,
     Useable,
+    Equipable,
 }
 
 public class ItemData:ScriptableObject

@@ -24,6 +24,7 @@ public class UIInventory : MonoBehaviour
     public GameObject dropButton;
 
     private int curEquipIndex = -1;
+    private Item_Equipable equipped = null;
 
     private PlayerController controller;
     private PlayerCondition condition;
@@ -182,6 +183,8 @@ public class UIInventory : MonoBehaviour
 
 
         useButton.SetActive(selectedItem.item.type == ItemType.Consumable || selectedItem.item.type == ItemType.Useable);
+        equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !slots[index].equipped);
+        unEquipButton.SetActive(selectedItem.item.type == ItemType.Equipable &&  slots[index].equipped);
         dropButton.SetActive(true);
     }
 
@@ -226,6 +229,7 @@ public class UIInventory : MonoBehaviour
 
         slots[selectedItemIndex].equipped = true;
         curEquipIndex = selectedItemIndex;
+        selectedItem.item.UseItem();
         UpdateUI();
 
         SelectItem(selectedItemIndex);
@@ -245,5 +249,6 @@ public class UIInventory : MonoBehaviour
     public void OnUnEquipButton()
     {
         UnEquip(selectedItemIndex);
+        CharacterManager.Instance.Player.controller.UnEquipItem();
     }
 }
