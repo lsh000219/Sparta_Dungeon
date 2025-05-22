@@ -29,22 +29,44 @@ public class Interaction : MonoBehaviour
 
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
+            if (!CharacterManager.Instance.Player.controller.giant)
             {
-                if (hit.collider.gameObject != curInteractGameObject)
+                if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
                 {
-                    curInteractGameObject = hit.collider.gameObject;
-                    curInteractable = hit.collider.GetComponent<IInteractable>();
-                    SetPromptText();
+                    if (hit.collider.gameObject != curInteractGameObject)
+                    {
+                        curInteractGameObject = hit.collider.gameObject;
+                        curInteractable = hit.collider.GetComponent<IInteractable>();
+                        SetPromptText();
+                    }
+                }
+                else
+                {
+                    curInteractGameObject = null;
+                    curInteractable = null;
+                    promptText.gameObject.SetActive(false);
                 }
             }
             else
             {
-                curInteractGameObject = null;
-                curInteractable = null;
-                promptText.gameObject.SetActive(false);
+                if (Physics.Raycast(ray, out hit, maxCheckDistance + 2, layerMask))
+                {
+                    if (hit.collider.gameObject != curInteractGameObject)
+                    {
+                        curInteractGameObject = hit.collider.gameObject;
+                        curInteractable = hit.collider.GetComponent<IInteractable>();
+                        SetPromptText();
+                    }
+                }
+                else
+                {
+                    curInteractGameObject = null;
+                    curInteractable = null;
+                    promptText.gameObject.SetActive(false);
+                }
             }
+
+            
         }
     }
 

@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigidbody;
 
     private bool pov = true;
+    public bool giant = false;
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -187,5 +188,11 @@ public class PlayerController : MonoBehaviour
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
+    }
+
+    public void ChangeScale(float scale, bool toggle)
+    {
+        giant = toggle;
+        rigidbody.transform.localScale = new Vector3(scale, scale, scale);
     }
 }

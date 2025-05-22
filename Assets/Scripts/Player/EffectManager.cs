@@ -7,15 +7,15 @@ public class EffectManager:MonoBehaviour
     
     public Canvas PepperCanvas;
 
-    public void PepperEffect()
+    public void PepperEffect(float value)
     {
         if (coroutine != null) StopCoroutine(coroutine);
-        coroutine = StartCoroutine(PepperTimer(2.0f));
+        coroutine = StartCoroutine(PepperTimer(2.0f, value));
     }
     
-    IEnumerator PepperTimer(float battleTime)
+    IEnumerator PepperTimer(float battleTime, float value)
     {
-        float curTime = battleTime; int i = 5;
+        float curTime = battleTime; float i = value;
         PepperCanvas.gameObject.SetActive(true);
 
         while (curTime > 0)
@@ -33,6 +33,26 @@ public class EffectManager:MonoBehaviour
             }
             yield return null;
         }
+        coroutine = null;
+    }
+
+    public void SteakEffect(float value)
+    {
+        if (coroutine != null) StopCoroutine(coroutine);
+        coroutine = StartCoroutine(SteakTimer(15.0f, value));
+    }
+    
+    IEnumerator SteakTimer(float battleTime, float value)
+    {
+        float curTime = battleTime; float i = value;
+        CharacterManager.Instance.Player.controller.ChangeScale(value, true);
+
+        while (curTime > 0)
+        {
+            curTime -= Time.deltaTime;
+            yield return null;
+        }
+        CharacterManager.Instance.Player.controller.ChangeScale(1f, false);
         coroutine = null;
     }
 }

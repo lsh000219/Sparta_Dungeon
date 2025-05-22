@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d95f22a82b4d1cb6bd835d8998e0eb, type: 3}
+  m_Name: Item_Steak
+  m_EditorClassIdentifier: 
+  type: 1
+  displayName: "\uC2A4\uD14C\uC774\uD06C"
+  description: "\uBAB8\uB3C4 \uB9C8\uC74C\uB3C4 \uC465\uC465 \uD074\uAC83\uAC19\uB2E4"
+  icon: {fileID: 21300000, guid: 1ad71c7e579edc44b87c5bf49178d6dc, type: 3}
+  dropPrefab: {fileID: 4991677703195139702, guid: 51fd09160b818894eb0e72ff6eb1aec7, type: 3}
+  canStack: 1
+  maxStackAmount: 12
+  itemDataUseable:
+    value: 3
