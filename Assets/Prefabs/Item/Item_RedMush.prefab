@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2044560046705236234}
   - component: {fileID: 5947833530342945676}
   - component: {fileID: 6261563038051374007}
-  - component: {fileID: -7438138185685193006}
+  - component: {fileID: 308641199532760247}
   m_Layer: 7
   m_Name: Item_RedMush
   m_TagString: Untagged
@@ -83,7 +83,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3111534, y: 0.4178046, z: 0.24760532}
   m_Center: {x: 0.011711121, y: 0.18784934, z: -0.010647774}
---- !u!114 &-7438138185685193006
+--- !u!114 &308641199532760247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6995107be4dfb6641b2f791a2128a13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 3e76e0b8b804bbb4d8866317b16170fd, type: 2}
+  data: {fileID: 11400000, guid: 85e4f028f9f7771468907b4036609fa3, type: 2}
 --- !u!1 &7517588877758609940
 GameObject:
   m_ObjectHideFlags: 0

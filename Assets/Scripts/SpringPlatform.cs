@@ -14,6 +14,6 @@ public class SpringPlatform : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        controller.SpringJump(jumpPower);
+        controller.Jump();
     }
 }

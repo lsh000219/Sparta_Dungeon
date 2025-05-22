@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8509952012906596519}
   - component: {fileID: 2829005049020927309}
   - component: {fileID: 5470735074699600762}
-  - component: {fileID: 3193614987174925466}
+  - component: {fileID: 6823681839409800785}
   m_Layer: 7
   m_Name: Item_Pepper
   m_TagString: Untagged
@@ -166,7 +166,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3193614987174925466
+--- !u!114 &6823681839409800785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,4 +178,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6995107be4dfb6641b2f791a2128a13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: bc04ced6fb43b0741bf9b35680ddb138, type: 2}
+  data: {fileID: 11400000, guid: 666de62e031952c4d935a7136e8e5b9e, type: 2}

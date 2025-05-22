@@ -699,7 +699,7 @@ Transform:
   m_GameObject: {fileID: 190447642}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.008726558, z: 0, w: 0.999962}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.365, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4451,6 +4451,7 @@ GameObject:
   - component: {fileID: 1560237757}
   - component: {fileID: 1560237758}
   - component: {fileID: 1560237759}
+  - component: {fileID: 1560237760}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -4670,6 +4671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1560237757}
   condition: {fileID: 1560237758}
+  effectManager: {fileID: 1560237760}
   itemData: {fileID: 0}
   dropPosition: {fileID: 1356429962}
 --- !u!114 &1560237756
@@ -4741,6 +4743,19 @@ MonoBehaviour:
     m_Bits: 128
   curInteractGameObject: {fileID: 0}
   promptText: {fileID: 817882520}
+--- !u!114 &1560237760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560237750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb674d0f3fce4438aedbed884e0b1d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PepperCanvas: {fileID: 538049547}
 --- !u!1001 &1601192903
 PrefabInstance:
   m_ObjectHideFlags: 0

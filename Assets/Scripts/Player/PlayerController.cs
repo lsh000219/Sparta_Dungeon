@@ -5,8 +5,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    Coroutine coroutine;
-
+    
     [SerializeField]
     public Canvas pepperEffect;
 
@@ -95,50 +94,19 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
-            rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            Jump();
             CharacterManager.Instance.Player.condition.jump(20.0f);
         }
     }
 
-    public void ForcedJump(float jumpForce)
+    public void ForcedJump(Vector3 v)
     {
-        Vector3 upward = transform.up * (jumpForce * 0.4f);
-        Vector3 forward = transform.forward * (jumpForce * 10f);
-        rigidbody.AddForce((upward + forward) * jumpForce, ForceMode.Impulse);
+        rigidbody.AddForce(v, ForceMode.Impulse);
     }
     
-    public void SpringJump(float jumpForce)
+    public void Jump()
     {
-        rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
-    }
-
-    public void PepperEffect()
-    {
-        if (coroutine != null) StopCoroutine(coroutine);
-        coroutine = StartCoroutine(PepperTimer(2.0f));
-    }
-
-    IEnumerator PepperTimer(float battleTime)
-    {
-        float curTime = battleTime; int i = 5;
-        pepperEffect.gameObject.SetActive(true);
-
-        while (curTime > 0)
-        {
-            curTime -= Time.deltaTime;
-
-            if (curTime <= 0)
-            {
-                rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse); i--;
-                if (i <= 0) { 
-                    pepperEffect.gameObject.SetActive(false);
-                    coroutine = null;  yield break;
-                }
-                curTime = 3.0f;
-            }
-            yield return null;
-        }
-        coroutine = null;
+        rigidbody.AddForce(Vector2.up * this.jumpPower, ForceMode.Impulse);
     }
 
     private void Move()
@@ -152,7 +120,6 @@ public class PlayerController : MonoBehaviour
             targetVelocity,
             0.1f 
         );
-
 
         velocity.y = rigidbody.velocity.y;
 

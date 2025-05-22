@@ -1,4 +1,4 @@
-﻿using TMPro;
+﻿﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -83,8 +83,6 @@ public class UIInventory : MonoBehaviour
         return inventoryWindow.activeInHierarchy;
     }
 
-    // PlayerController 먼저 수정
-
     public void AddItem()
     {
         ItemData data = CharacterManager.Instance.Player.itemData;
@@ -154,15 +152,12 @@ public class UIInventory : MonoBehaviour
         }
         return null;
     }
-
-    // Player 스크립트 먼저 수정
+    
     public void ThrowItem(ItemData data)
     {
         Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
     }
-
-
-    // ItemSlot 스크립트 먼저 수정
+    
     public void SelectItem(int index)
     {
         if (slots[index].item == null) return;
@@ -176,34 +171,24 @@ public class UIInventory : MonoBehaviour
         selectedItemStatName.text = string.Empty;
         selectedItemStatValue.text = string.Empty;
 
-        for (int i = 0; i < selectedItem.item.consumables.Length; i++)
+        if (selectedItem.item is Item_Consume consumeItem)
         {
-            selectedItemStatName.text += selectedItem.item.consumables[i].type.ToString() + "\n";
-            selectedItemStatValue.text += selectedItem.item.consumables[i].value.ToString() + "\n";
+            for (int i = 0; i < consumeItem.consumables.Length; i++)
+            {
+                selectedItemStatName.text += consumeItem.consumables[i].type.ToString() + "\n";
+                selectedItemStatValue.text += consumeItem.consumables[i].value.ToString() + "\n";
+            }
         }
 
-        useButton.SetActive(selectedItem.item.type == ItemType.Consumable);
-        //equipButton.SetActive(selectedItem.item.type == ItemType.Equipable && !slots[index].equipped);
-        //unEquipButton.SetActive(selectedItem.item.type == ItemType.Equipable && slots[index].equipped);
+
+        useButton.SetActive(selectedItem.item.type == ItemType.Consumable || selectedItem.item.type == ItemType.Useable);
         dropButton.SetActive(true);
     }
 
     public void OnUseButton()
     {
-        if (selectedItem.item.type == ItemType.Consumable)
-        {
-            for (int i = 0; i < selectedItem.item.consumables.Length; i++)
-            {
-                switch (selectedItem.item.consumables[i].type)
-                {
-                    case ConsumableType.Health:
-                        condition.Heal(selectedItem.item.consumables[i].value); break;
-                    case ConsumableType.JumpForce:
-                        controller.PepperEffect(); break;
-                }
-            }
-            RemoveSelctedItem();
-        }
+        selectedItem.item.UseItem();
+        RemoveSelctedItem();
     }
 
     public void OnDropButton()
@@ -241,7 +226,6 @@ public class UIInventory : MonoBehaviour
 
         slots[selectedItemIndex].equipped = true;
         curEquipIndex = selectedItemIndex;
-        //CharacterManager.Instance.Player.equip.EquipNew(selectedItem.item);
         UpdateUI();
 
         SelectItem(selectedItemIndex);
@@ -250,7 +234,6 @@ public class UIInventory : MonoBehaviour
     void UnEquip(int index)
     {
         slots[index].equipped = false;
-        //CharacterManager.Instance.Player.equip.UnEquip();
         UpdateUI();
 
         if (selectedItemIndex == index)
