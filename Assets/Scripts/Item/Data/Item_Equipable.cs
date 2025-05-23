@@ -11,6 +11,7 @@ public class Item_Equipable:ItemData
 {
     [SerializeField]
     private ItemDataEquipable equipable;
+    public GameObject equipPrefab;
     
     public float jumpValue()
     {
@@ -25,6 +26,6 @@ public class Item_Equipable:ItemData
     public override void UseItem()
     {
         // 아이템 장착
-        CharacterManager.Instance.Player.controller.EquipItem(this);
+        CharacterManager.Instance.Player.controller.EquipItem(this, equipPrefab);
     }
 }

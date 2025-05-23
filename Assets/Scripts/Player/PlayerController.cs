@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     public Canvas pepperEffect;
+    public GameObject playerSprite;
 
     [Header("Movement")]
     public float moveSpeed;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public bool giant = false;
     
     Item_Equipable equipable;
+    private GameObject equipPrefab;
     
     private void Awake()
     {
@@ -222,13 +224,18 @@ public class PlayerController : MonoBehaviour
         rigidbody.transform.localScale = new Vector3(scale, scale, scale);
     }
 
-    public void EquipItem(Item_Equipable item)
+    public void EquipItem(Item_Equipable item, GameObject equipPrefab)
     {
+        UnEquipItem();
+            
         equipable = item;
+        this.equipPrefab = Instantiate(equipPrefab, playerSprite.transform);
     }
     
     public void UnEquipItem()
     {
         equipable = null;
+        Destroy(equipPrefab);
+
     }
 }
