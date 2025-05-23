@@ -6,7 +6,7 @@ public class MovingAtoBPlatform : MapObject
     public Vector3 pointA;          
     public Vector3 pointB;          
     public float speed = 2f;  
-    private bool onOff = false;
+    private bool onOff = true;
 
     private Vector3 target;
 
