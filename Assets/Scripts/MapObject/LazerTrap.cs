@@ -18,7 +18,6 @@ public class LazerTrap : MonoBehaviour
         {
             if (!wasHitLastFrame)
             {
-                Debug.Log("Ray hit: " + hit.collider.name);
                 if (PepperCanvas != null)
                     PepperCanvas.gameObject.SetActive(true);
             }
@@ -27,7 +26,6 @@ public class LazerTrap : MonoBehaviour
         {
             if (wasHitLastFrame)
             {
-                Debug.Log("Ray exited");
                 if (PepperCanvas != null)
                     PepperCanvas.gameObject.SetActive(false);
             }
