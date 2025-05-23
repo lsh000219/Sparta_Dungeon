@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     public PlayerController controller;
     public PlayerCondition condition;
+    public EffectManager effectManager;
 
     public ItemData itemData;
     public Action addItem;

@@ -5,10 +5,10 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    Coroutine coroutine;
-
+    
     [SerializeField]
     public Canvas pepperEffect;
+    public GameObject playerSprite;
 
     [Header("Movement")]
     public float moveSpeed;
@@ -28,10 +28,15 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool canLook = true;
 
-    public Action inventory;
-
+    public Action Inventory;
     private Rigidbody rigidbody;
 
+    public bool pov = true;
+    public bool giant = false;
+    
+    Item_Equipable equipable;
+    private GameObject equipPrefab;
+    
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -60,6 +65,24 @@ public class PlayerController : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
     }
 
+    public void ChangeView(InputAction.CallbackContext context)
+    {
+        if (pov)
+        {
+            cameraContainer.localPosition = new Vector3(cameraContainer.localPosition.x, 3f, -5f);
+            cameraContainer.localEulerAngles = new Vector3(20f, 10f, 0f);
+            
+            pov = false;
+        }
+        else
+        {
+            cameraContainer.localPosition = new Vector3(cameraContainer.localPosition.x, 1f, 0);
+            cameraContainer.localEulerAngles = new Vector3(0f, 1f, 0f);
+            
+            pov = true;
+        }
+    }
+    
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -76,65 +99,85 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
-            rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            Jump();
+            CharacterManager.Instance.Player.condition.jump(20.0f);
         }
     }
 
-    public void ForcedJump(float jumpPower)
+    public void ForcedJump(Vector3 v)
     {
-        rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+        rigidbody.AddForce(v, ForceMode.Impulse);
     }
-
-    public void PepperEffect()
+    
+    public void Jump()
     {
-        if (coroutine != null) StopCoroutine(coroutine);
-        coroutine = StartCoroutine(CoTimer(2.0f));
-    }
-
-    IEnumerator CoTimer(float battleTime)
-    {
-        float curTime = battleTime; int i = 5;
-        pepperEffect.gameObject.SetActive(true);
-
-        while (curTime > 0)
+        Vector2 v;
+        if (equipable != null)
         {
-            curTime -= Time.deltaTime;
-
-            if (curTime <= 0)
-            {
-                rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse); i--;
-                if (i <= 0) { 
-                    pepperEffect.gameObject.SetActive(false);
-                    coroutine = null;  yield break;
-                }
-                curTime = 3.0f;
-            }
-            yield return null;
+            v = Vector2.up * (this.jumpPower + equipable.jumpValue());
         }
-        coroutine = null;
+        else
+        {
+            v = Vector2.up * this.jumpPower;
+        }
+        
+        rigidbody.AddForce(v, ForceMode.Impulse);
+    }
+    
+    public void FixedJump(float value)
+    {
+        rigidbody.AddForce(Vector2.up * value, ForceMode.Impulse);
     }
 
     private void Move()
     {
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= moveSpeed;
-        dir.y = rigidbody.velocity.y;
+        
+        Vector3 targetVelocity;
+        if (equipable != null)
+        {
+            targetVelocity = dir * (moveSpeed + equipable.speenValue());
+        }
+        else
+        {
+            targetVelocity = dir * moveSpeed;
+        }
 
-        rigidbody.velocity = dir;
+
+        Vector3 velocity = Vector3.Lerp(
+            new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z), 
+            targetVelocity,
+            0.1f 
+        );
+
+        velocity.y = rigidbody.velocity.y;
+
+        rigidbody.velocity = velocity;
     }
 
     void CameraLook()
     {
-        camCurXRot += mouseDelta.y * lookSensitivity;
-        camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
-        cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
+        if (pov)
+        {
+            camCurXRot += mouseDelta.y * lookSensitivity;
+            camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
+            cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
 
-        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+            transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+        }
+        else
+        {
+            camCurXRot += mouseDelta.y * lookSensitivity;
+            camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
+            cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 10f, 0);
+
+            transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
+        }
     }
 
     bool IsGrounded()
     {
-        Ray[] rays = new Ray[4]
+        Ray[] rays = new Ray[]
         {
             new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
             new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
@@ -163,7 +206,7 @@ public class PlayerController : MonoBehaviour
     {
         if (callbackContext.phase == InputActionPhase.Started)
         {
-            inventory?.Invoke();
+            Inventory?.Invoke();
             ToggleCursor();
         }
     }
@@ -173,5 +216,26 @@ public class PlayerController : MonoBehaviour
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
+    }
+
+    public void ChangeScale(float scale, bool toggle)
+    {
+        giant = toggle;
+        rigidbody.transform.localScale = new Vector3(scale, scale, scale);
+    }
+
+    public void EquipItem(Item_Equipable item, GameObject equipPrefab)
+    {
+        UnEquipItem();
+            
+        equipable = item;
+        this.equipPrefab = Instantiate(equipPrefab, playerSprite.transform);
+    }
+    
+    public void UnEquipItem()
+    {
+        equipable = null;
+        Destroy(equipPrefab);
+
     }
 }

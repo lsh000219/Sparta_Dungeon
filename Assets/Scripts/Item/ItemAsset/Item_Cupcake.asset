@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a476427ad7b05044ab6869a4694735b1, type: 3}
-  m_Name: Cupcake
+  m_Script: {fileID: 11500000, guid: 5446002c0bc64b34a647d66270491196, type: 3}
+  m_Name: Item_Cupcake
   m_EditorClassIdentifier: 
-  displayName: "\uCEF5\uCF00\uC774\uD06C"
-  description: "\uB9DB\uC788\uC5B4 \uBCF4\uC774\uB294 \uCEF5\uCF00\uC774\uD06C"
   type: 0
+  displayName: "\uCEF5\uCF00\uC774\uD06C"
+  description: "\uB9DB\uC788\uC5B4 \uBCF4\uC774\uB294 \uCEF5\uCF00\uC774\uD06C\uB2E4"
   icon: {fileID: 21300000, guid: c69202f54f416ce4bbfed78b67ebda83, type: 3}
   dropPrefab: {fileID: 7101901037311207453, guid: df84fc9345e45ff4eb2a2f18267cf7b0, type: 3}
   canStack: 1

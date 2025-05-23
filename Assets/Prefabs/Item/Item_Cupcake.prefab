@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3005070292505833950}
   - component: {fileID: 8601018573635588964}
   - component: {fileID: 2060043147228709214}
-  - component: {fileID: 1277746573549779568}
+  - component: {fileID: 6916719199517640106}
   m_Layer: 7
   m_Name: Item_Cupcake
   m_TagString: Untagged
@@ -83,7 +83,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.13633461, y: 0.11293288, z: 0.118877225}
   m_Center: {x: -0.004263878, y: 0.057243176, z: -0.0003230095}
---- !u!114 &1277746573549779568
+--- !u!114 &6916719199517640106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6995107be4dfb6641b2f791a2128a13a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 91df988c54820bd4a904f089c85520d7, type: 2}
+  data: {fileID: 11400000, guid: d8ec4d8b0baa7234f95030b7dd0b94ee, type: 2}
 --- !u!1 &8998476250658419634
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,11 +26,37 @@ public class Interaction : MonoBehaviour
         if (Time.time - lastCheckTime > checkRate)
         {
             lastCheckTime = Time.time;
+            
+            float viewRange;
+            
+            if (!CharacterManager.Instance.Player.controller.giant)
+            {
+                viewRange = 1.0f;
+            }
+            else
+            {
+                viewRange = 3.0f;
+            }
+            
+            Ray ray; RaycastHit hit;
+            if (CharacterManager.Instance.Player.controller.pov)
+            {
+                ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            }
+            else
+            {
+                ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+                viewRange += 3.0f;
+                if (CharacterManager.Instance.Player.controller.giant)
+                {
+                    viewRange += 10.0f;
+                }
+            }
 
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
+            
+            
+            
+            if (Physics.Raycast(ray, out hit, maxCheckDistance + viewRange, layerMask))
             {
                 if (hit.collider.gameObject != curInteractGameObject)
                 {

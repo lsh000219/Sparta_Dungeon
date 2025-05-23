@@ -9,16 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a476427ad7b05044ab6869a4694735b1, type: 3}
-  m_Name: Pepper
+  m_Script: {fileID: 11500000, guid: 51e2d56a31cb48cfb32391a6ae6eaf4b, type: 3}
+  m_Name: Item_Pepper
   m_EditorClassIdentifier: 
+  type: 1
   displayName: "\uACE0\uCD94"
   description: "\uB9E4\uC6CC\uC11C \uD384\uCA4D \uB6F8 \uAC83 \uAC19\uB2E4"
-  type: 0
   icon: {fileID: 21300000, guid: 47af8e5df1d011d438452b731c0c8d1e, type: 3}
   dropPrefab: {fileID: 4492111067608889965, guid: b8fb6b96d7c013749b047a44c8634b96, type: 3}
   canStack: 1
   maxStackAmount: 12
-  consumables:
-  - type: 1
-    value: 500
+  itemDataUseable:
+    value: 5
