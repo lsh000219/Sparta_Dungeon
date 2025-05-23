@@ -21,5 +21,5 @@ public class ItemData:ScriptableObject
     public bool canStack;
     public int maxStackAmount;
 
-    public virtual void UseItem(){}
+    public virtual void UseItem(){}  //아이템 사용, 착용등의 기능을 자식에서 구현
 }

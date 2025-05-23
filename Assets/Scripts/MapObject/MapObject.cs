@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MapObject: MonoBehaviour, IInteractable
+public class MapObject: MonoBehaviour, IInteractable  //맵에 있는 특정 오브젝트에 대한 정보를 담음
 {
     public MapObjectData data;
     

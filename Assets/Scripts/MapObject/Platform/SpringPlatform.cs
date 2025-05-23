@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SpringPlatform : MonoBehaviour
+public class SpringPlatform : MonoBehaviour  // 높이 점프하는 하늘색 플랫폼
 {
     private PlayerController controller;
 

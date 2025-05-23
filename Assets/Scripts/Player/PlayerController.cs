@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
     public Action Inventory;
     private Rigidbody rigidbody;
 
-    public bool pov = true;
-    public bool giant = false;
+    public bool pov = true;  //1, 3인칭 설정 - true면 1인칭
+    public bool giant = false;  //거대화 되었는지 확인, Interaction에서 사용
     
     Item_Equipable equipable;
     private GameObject equipPrefab;
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         mouseDelta = context.ReadValue<Vector2>();
     }
 
-    public void ChangeView(InputAction.CallbackContext context)
+    public void ChangeView(InputAction.CallbackContext context)  //1인칭, 3인칭에 따른 카메라 위치 설정
     {
         if (pov)
         {
@@ -104,12 +104,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ForcedJump(Vector3 v)
+    public void ForcedJump(Vector3 v)  //빨간색 플랫폼 효과
     {
         rigidbody.AddForce(v, ForceMode.Impulse);
     }
     
-    public void Jump()
+    public void Jump()  // 스페이스 바로 할수있는 일반적인 점프
     {
         Vector2 v;
         if (equipable != null)
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
         rigidbody.AddForce(v, ForceMode.Impulse);
     }
     
-    public void FixedJump(float value)
+    public void FixedJump(float value)  //하늘색 플랫폼 효과
     {
         rigidbody.AddForce(Vector2.up * value, ForceMode.Impulse);
     }
@@ -212,21 +212,21 @@ public class PlayerController : MonoBehaviour
         canLook = !toggle;
     }
 
-    public void ChangeScale(float scale, bool toggle)
+    public void ChangeScale(float scale, bool toggle)  //EffectManager의 스테이크 효과 실행
     {
         giant = toggle;
         rigidbody.transform.localScale = new Vector3(scale, scale, scale);
     }
 
-    public void EquipItem(Item_Equipable item, GameObject equipPrefab)
+    public void EquipItem(Item_Equipable item, GameObject equipPrefab)  // 장비 아이템 장착
     {
         UnEquipItem();
             
         equipable = item;
         this.equipPrefab = Instantiate(equipPrefab, playerSprite.transform);
-    }
+    }  
     
-    public void UnEquipItem()
+    public void UnEquipItem()   //장착 아이템 해제
     {
         equipable = null;
         Destroy(equipPrefab);

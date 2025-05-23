@@ -14,19 +14,19 @@ public class LazerTrap : MonoBehaviour
 
         Debug.DrawRay(rayOrigin.position, rayOrigin.forward * 50f, Color.red);
 
-        if (isHit)
+        if (isHit) // 레이저에 맞았을 때
         {
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Player"))  //맞은게 플레이어라면
             {
                 if (!wasHitLastFrame)
                 {
                     if (PepperCanvas != null)
-                        PepperCanvas.gameObject.SetActive(true);
+                        PepperCanvas.gameObject.SetActive(true);   //화면 빨개짐
                 }
 
                 wasHitLastFrame = true;
             }
-            else
+            else  
             {
                 if (wasHitLastFrame)
                 {
@@ -37,9 +37,9 @@ public class LazerTrap : MonoBehaviour
                 wasHitLastFrame = false;
             }
         }
-        else
+        else  //맞은게 없다면
         {
-            if (wasHitLastFrame)
+            if (wasHitLastFrame) //화면이 빨개지는 효과 없앰, 플레이어가 레이를 벗어났을 때 한 번만 호출
             {
                 if (PepperCanvas != null)
                     PepperCanvas.gameObject.SetActive(false);

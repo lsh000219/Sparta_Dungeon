@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class MovingAtoBPlatform : MapObject
+public class MovingAtoBPlatform : MapObject // 두 지점을 왕복하는 노란색 플랫폼
 {
     public Vector3 pointA;          
     public Vector3 pointB;          
@@ -29,7 +29,7 @@ public class MovingAtoBPlatform : MapObject
         
     }
 
-    public override void OnInteract()
+    public override void OnInteract()  // 상호작용시 이동을 멈출수도, 다시 움직일수도 있음
     {
         onOff = !onOff;
     }

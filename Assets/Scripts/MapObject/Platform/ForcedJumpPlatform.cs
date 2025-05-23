@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ForcedJumpPlatform : MonoBehaviour
+public class ForcedJumpPlatform : MonoBehaviour  //보는 방향으로 날아가는 빨간색 플랫폼
 {
     private PlayerController controller;
 
