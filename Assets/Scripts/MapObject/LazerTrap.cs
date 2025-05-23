@@ -16,10 +16,25 @@ public class LazerTrap : MonoBehaviour
 
         if (isHit)
         {
-            if (!wasHitLastFrame)
+            if (hit.collider.CompareTag("Player"))
             {
-                if (PepperCanvas != null)
-                    PepperCanvas.gameObject.SetActive(true);
+                if (!wasHitLastFrame)
+                {
+                    if (PepperCanvas != null)
+                        PepperCanvas.gameObject.SetActive(true);
+                }
+
+                wasHitLastFrame = true;
+            }
+            else
+            {
+                if (wasHitLastFrame)
+                {
+                    if (PepperCanvas != null)
+                        PepperCanvas.gameObject.SetActive(false);
+                }
+
+                wasHitLastFrame = false;
             }
         }
         else
@@ -29,9 +44,10 @@ public class LazerTrap : MonoBehaviour
                 if (PepperCanvas != null)
                     PepperCanvas.gameObject.SetActive(false);
             }
-        }
 
-        // 상태 업데이트
+            wasHitLastFrame = false;
+        }
+        
         wasHitLastFrame = isHit;
     }
 }
