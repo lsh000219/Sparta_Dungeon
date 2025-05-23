@@ -10,7 +10,6 @@ public class PlayerCondition : MonoBehaviour
     
     public float healthDecay;
     public float staminaRecover;
-    public event Action onTakeDamage;
 
     private void Update()
     {

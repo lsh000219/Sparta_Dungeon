@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Start()
+    void  Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -194,12 +194,6 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void ToggleCursor(bool toggle)
-    {
-        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
-        canLook = !toggle;
     }
 
     public void OnInventoryButton(InputAction.CallbackContext callbackContext)
