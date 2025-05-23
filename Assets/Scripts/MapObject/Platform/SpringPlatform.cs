@@ -14,6 +14,9 @@ public class SpringPlatform : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        controller.FixedJump(jumpPower);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            controller.FixedJump(jumpPower);
+        }
     }
 }
