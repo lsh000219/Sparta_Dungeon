@@ -33,6 +33,5 @@ public class LazerTrap : MonoBehaviour
 
         // 상태 업데이트
         wasHitLastFrame = isHit;
-        Debug.DrawRay(rayOrigin.position, rayOrigin.forward * 50f, Color.red);
     }
 }
