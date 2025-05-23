@@ -1394,6 +1394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingAtoBPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 4472737139226146542, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2769,7 +2773,6 @@ Transform:
   - {fileID: 757804079}
   - {fileID: 669020428}
   - {fileID: 1728864268}
-  - {fileID: 1579308903}
   - {fileID: 1458081211}
   - {fileID: 785061034}
   - {fileID: 846089144}
@@ -6018,92 +6021,6 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4658993963623740685, guid: 79804633cc2befb48b92a0eaf7990480, type: 3}
   m_PrefabInstance: {fileID: 693497408}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1579308902
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 864976106}
-    m_Modifications:
-    - target: {fileID: 4002461192748062187, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: pointA.x
-      value: -9.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002461192748062187, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: pointA.y
-      value: -7.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002461192748062187, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: pointA.z
-      value: -12.82
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002461192748062187, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: pointB.x
-      value: -9.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002461192748062187, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: pointB.y
-      value: -7.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002461192748062187, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: pointB.z
-      value: 1.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -8.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4472737139226146542, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-      propertyPath: m_Name
-      value: MovingAtoBPlatform (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
---- !u!4 &1579308903 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4120146217334131319, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
-  m_PrefabInstance: {fileID: 1579308902}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1601192903
 PrefabInstance:
