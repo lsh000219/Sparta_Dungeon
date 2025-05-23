@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForcedJumpPlatform (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -485,6 +489,10 @@ PrefabInstance:
     - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
       propertyPath: m_Name
       value: ForcedJumpPlatform (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1020,6 +1028,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item_Cupcake (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7101901037311207453, guid: df84fc9345e45ff4eb2a2f18267cf7b0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1160,6 +1172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForcedJumpPlatform (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1297,6 +1313,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpringPlatform (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8044505483357026616, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.095022
@@ -1396,7 +1416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4472737139226146542, guid: 01ba6fa36fcb5824c8b8544c4e663f69, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1908,6 +1928,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpringPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8044505483357026616, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.835022
@@ -2196,6 +2220,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForcedJumpPlatform (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2331,6 +2359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForcedJumpPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2347,6 +2379,10 @@ PrefabInstance:
     - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_Name
       value: SpringPlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8044505483357026616, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2449,6 +2485,10 @@ PrefabInstance:
     - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
       propertyPath: m_Name
       value: ForcedJumpPlatform (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2686,6 +2726,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpringPlatform (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8044505483357026616, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15
@@ -2797,6 +2841,10 @@ PrefabInstance:
     - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_Name
       value: SpringPlatform (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8044505483357026616, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3520,6 +3568,10 @@ PrefabInstance:
     - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_Name
       value: SpringPlatform (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8044505483357026616, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5033,6 +5085,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpringPlatform (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8044505483357026616, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.71
@@ -5130,6 +5186,10 @@ PrefabInstance:
     - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_Name
       value: SpringPlatform (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8044505483357026616, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5486,6 +5546,10 @@ PrefabInstance:
     - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
       propertyPath: m_Name
       value: ForcedJumpPlatform (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6317,6 +6381,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpringPlatform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6547620059154058160, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8044505483357026616, guid: 49f20f8e1a57c214cab7076232b44a5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9
@@ -6766,6 +6834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item_Cupcake (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7101901037311207453, guid: df84fc9345e45ff4eb2a2f18267cf7b0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7043,6 +7115,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForcedJumpPlatform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7319,6 +7395,10 @@ PrefabInstance:
     - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
       propertyPath: m_Name
       value: ForcedJumpPlatform (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563214797135532681, guid: b4011e180957dca419ce08a5c5691713, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
